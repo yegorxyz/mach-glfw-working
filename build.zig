@@ -28,18 +28,20 @@ pub fn build(b: *std.Build) !void {
     b.installArtifact(main_tests);
     test_step.dependOn(&b.addRunArtifact(main_tests).step);
 
-    if (target.result.isDarwin()) {
-        if (glfw_dep.builder.lazyDependency("xcode_frameworks", .{
-            .target = target,
-            .optimize = optimize,
-        })) |dep| {
-            module.addSystemFrameworkPath(dep.path("Frameworks"));
-            module.addSystemIncludePath(dep.path("include"));
-            module.addLibraryPath(dep.path("lib"));
+    // Who cares about MacOS?
 
-            main_tests.root_module.addSystemFrameworkPath(dep.path("Frameworks"));
-            main_tests.root_module.addSystemIncludePath(dep.path("include"));
-            main_tests.root_module.addLibraryPath(dep.path("lib"));
-        }
-    }
+    //    if (target.result.isDarwin()) {
+    //        if (glfw_dep.builder.lazyDependency("xcode_frameworks", .{
+    //            .target = target,
+    //            .optimize = optimize,
+    //        })) |dep| {
+    //            module.addSystemFrameworkPath(dep.path("Frameworks"));
+    //            module.addSystemIncludePath(dep.path("include"));
+    //            module.addLibraryPath(dep.path("lib"));
+    //
+    //            main_tests.root_module.addSystemFrameworkPath(dep.path("Frameworks"));
+    //            main_tests.root_module.addSystemIncludePath(dep.path("include"));
+    //            main_tests.root_module.addLibraryPath(dep.path("lib"));
+    //        }
+    //    }
 }

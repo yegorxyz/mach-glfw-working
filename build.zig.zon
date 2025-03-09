@@ -1,6 +1,8 @@
 .{
-    .name = "mach-glfw",
+    .name = .mach_glfw,
     .version = "0.2.0",
+    .fingerprint = 0xa924846d0c0b803a,
+
     .paths = .{
         "src/",
         "build.zig",
